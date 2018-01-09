@@ -1,0 +1,28 @@
+---
+# vars file for task3
+
+pkg_names:
+- git
+- wget
+- curl
+- rpm
+- tar
+- unzip
+- bzip2
+- wget
+- createrepo
+- yum-utils
+- ntp
+- python-pip
+- psutils
+- python-psutil
+- ntp
+- libffi-devel
+- gcc
+- openssl-devel
+- mariadb-server
+- mysql-connector-java
+
+java_pkgs:
+- java-1.8.0-openjdk
+- java-1.8.0-openjdk-devel
