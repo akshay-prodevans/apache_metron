@@ -1,0 +1,55 @@
+---
+- name: install squid package
+  yum:
+    name: squid
+    state: latest
+
+- name: start squid service
+  service:
+    name: squid
+    state: started
+    enabled: yes
+  
+- name: Check access.log file
+  stat:
+    path: /var/log/squid/access.log
+  register: file
+
+- debug:
+    msg: "access.log is created"
+  when: file.stat.exists == true
+
+#########NIFI Installation
+#
+#
+- name: Download nifi Package
+  get_url:
+    url: http://www-us.apache.org/dist/nifi/1.3.0/nifi-1.3.0-bin.zip
+    dest: /usr/lib  
+- name: Unzip the downloaded file
+ # command: unzip -o /usr/lib/nifi-1.3.0-bin.zip -d /usr/lib
+  unarchive:
+    src: /usr/lib/nifi-1.3.0-bin.zip
+    dest: /usr/lib
+    remote_src: yes
+
+- name: Change the Port Number 
+  lineinfile:
+    dest: /usr/lib/nifi-1.3.0/conf/nifi.properties
+    regexp: '^nifi.web.http.port'
+    line: 'nifi.web.http.port={{nifi_port}}'
+
+- name: Install Nifi
+  command: /usr/lib/nifi-1.3.0/bin/nifi.sh install nifi
+
+- name: Disable Firewall
+  service:
+    name: firewalld
+    state: stopped
+    disabled: yes
+
+- name: Start the nifi Service
+  service:
+    name: nifi
+    state: started
+    enabled: yes

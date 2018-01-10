@@ -1,0 +1,14 @@
+---
+- name: create folder for local repo
+  file:
+    path: /localrepo
+    state: directory
+    mode: 0755
+
+- name: copy content into localrepo
+  copy:
+    src: localrepo/
+    dest: /localrepo/
+
+- name: create local repo
+  command: createrepo /localrepo

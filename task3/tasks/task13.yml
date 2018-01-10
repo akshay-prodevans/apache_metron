@@ -5,12 +5,12 @@
     dest: /root/metron
     version: Metron_0.4.0
 
-- name: build metron
-  command: mvn clean package -DskipTests -T 2C -P HDP-2.5.0.0,mpack
-  args:
-    chdir: /root/metron/
+#- name: build metron
+#  command: mvn clean package -DskipTests -T 2C -P HDP-2.5.0.0,mpack
+#  args:
+#    chdir: /root/metron/
 
-- name: build metron
-  command: mvn clean install -DskipTests -PHDP-2.5.0.0
-  args:
-    chdir: /root/metron/metron-deployment/packaging/docker/rpm-docker/
+#- name: build metron
+#  command: mvn clean install -DskipTests -PHDP-2.5.0.0
+#  args:
+#    chdir: /root/metron/metron-deployment/packaging/docker/rpm-docker/
