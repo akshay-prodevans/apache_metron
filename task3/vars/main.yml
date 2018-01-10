@@ -26,3 +26,6 @@ pkg_names:
 java_pkgs:
 - java-1.8.0-openjdk
 - java-1.8.0-openjdk-devel
+
+ports_allow:
+- 7/tcp
