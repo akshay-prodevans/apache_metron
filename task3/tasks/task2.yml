@@ -14,3 +14,9 @@
     - { name: '{{ node1_hostname }}', ip: '{{ node1_ip }}' }
     - { name: '{{ node2_hostname }}', ip: '{{ node2_ip }}' }
     - { name: '{{ metron_hostname }}', ip: '{{ metron_ip }}' }
+
+- name: adding nameserver
+  lineinfile:
+    path: /etc/resolv.conf
+    line: 'nameserver 8.8.8.8'
+    state: present

@@ -9,6 +9,17 @@
     name: '*'
     state: latest
 
+- name: creatinf target folder
+  file:
+    path: /root/metron/metron-deployment/packaging/ambari/metron-mpack/target
+    state: directory
+    mode: 0755
+
+- name: copying metron_mpack.tar file
+  copy:
+    src: metron_mpack-0.4.0.0.tar.gz
+    dest: /root/metron/metron-deployment/packaging/ambari/metron-mpack/target/metron_mpack-0.4.0.0.tar.gz
+
 - name: installing ambari-server
   yum:
     name: ambari-server
